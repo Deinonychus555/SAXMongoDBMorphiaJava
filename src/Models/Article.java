@@ -29,6 +29,8 @@ public class Article extends BasicDBObject{
     
     private String journal;
     
+    private String crosref;
+    
     public Article(){};
        
     public String getKey() {
@@ -69,6 +71,14 @@ public class Article extends BasicDBObject{
 
     public void setJournal(String journal) {
         this.journal = journal;
+    }
+
+    public String getCrosref() {
+        return crosref;
+    }
+
+    public void setCrosref(String crosref) {
+        this.crosref = crosref;
     }
  
     
