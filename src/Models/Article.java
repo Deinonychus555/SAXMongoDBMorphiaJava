@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Models;
 
 import com.mongodb.BasicDBObject;
-
-
+import java.util.ArrayList;
 
 /**
  *
@@ -16,23 +14,25 @@ import com.mongodb.BasicDBObject;
  * @author Juan Antonio Echeverrías Aranda
  * @author Oscar Miranda Bravo
  */
-public class Article extends BasicDBObject{
+public class Article extends BasicDBObject {
 
-       
     private String key;
-    
-    private String authors[];
-    
+
+    private ArrayList<String> authors = new ArrayList();
+
     private String title;
-  
+
     private int year;
-    
+
     private String journal;
-    
-    private String crosref;
-    
-    public Article(){};
-       
+
+    private String crossref;
+
+    public Article() {
+    }
+
+    ;
+
     public String getKey() {
         return key;
     }
@@ -41,15 +41,15 @@ public class Article extends BasicDBObject{
         this.key = key;
     }
 
-    public String[] getAuthors() {
+    public ArrayList getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String[] authors) {
+    public void setAuthors(ArrayList authors) {
         this.authors = authors;
     }
-    
-     public String getTitle() {
+
+    public String getTitle() {
         return title;
     }
 
@@ -73,13 +73,12 @@ public class Article extends BasicDBObject{
         this.journal = journal;
     }
 
-    public String getCrosref() {
-        return crosref;
+    public String getCrossref() {
+        return crossref;
     }
 
-    public void setCrosref(String crosref) {
-        this.crosref = crosref;
+    public void setCrossref(String crossref) {
+        this.crossref = crossref;
     }
- 
-    
+
 }

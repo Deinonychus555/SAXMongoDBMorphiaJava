@@ -5,14 +5,17 @@
  */
 package Models;
 
+import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
+
 /**
  *
  * @author Javier
  */
-public class Autor {
+public class Author extends BasicDBObject {
 
     private String name;
-    private String [] cite;
+    private ArrayList<String> cite = new ArrayList();
 
     public String getName() {
         return name;
@@ -22,13 +25,17 @@ public class Autor {
         this.name = name;
     }
 
-    public String[] getCite() {
+    public ArrayList<String> getCite() {
         return cite;
     }
 
-    public void setCite(String[] cite) {
+    public void setCite(ArrayList<String> cite) {
         this.cite = cite;
     }
-    
+
+    @Override
+    public String toString() {
+        return "AUTHOR: " + name;
+    }
 
 }

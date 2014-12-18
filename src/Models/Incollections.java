@@ -5,31 +5,34 @@
  */
 package Models;
 
+import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
+
 /**
  *
  * @author oscarmirandabravo
  */
-public class Incollections {
-    
-    private String [] author;
+public class Incollections extends BasicDBObject {
+
+    private ArrayList<String> author = new ArrayList();
     private String title;
     private String bookTitle;
-    private String crossef;
-    private int año;
+    private String crossref;
+    private int year;
 
-    public int getAño() {
-        return año;
+    public int getYear() {
+        return year;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public String[] getAuthor() {
+    public ArrayList<String> getAuthor() {
         return author;
     }
 
-    public void setAuthor(String[] author) {
+    public void setAuthor(ArrayList<String> author) {
         this.author = author;
     }
 
@@ -50,14 +53,16 @@ public class Incollections {
     }
 
     public String getCrossef() {
-        return crossef;
+        return crossref;
     }
 
     public void setCrossef(String crossef) {
-        this.crossef = crossef;
+        this.crossref = crossef;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Incollection: " + author.get(0) + " " + title + " " + year + " " + bookTitle + " " + crossref + " Fin incollection \n"; //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

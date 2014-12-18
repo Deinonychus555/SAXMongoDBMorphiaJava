@@ -5,31 +5,34 @@
  */
 package Models;
 
+import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
+
 /**
  * @author Javier
  * @author Juan Antonio
  * @author Oscar
  */
-public class Book {
-    
-    private String [] editor;
-    private String [] author;
+public class Book extends BasicDBObject {
+
+    private ArrayList<String> editor = new ArrayList();
+    private ArrayList<String> author = new ArrayList();
     private String title;
     private int year;
 
-    public String[] getEditor() {
+    public ArrayList<String> getEditor() {
         return editor;
     }
 
-    public void setEditor(String[] editor) {
+    public void setEditor(ArrayList<String> editor) {
         this.editor = editor;
     }
 
-    public String[] getAuthor() {
+    public ArrayList<String> getAuthor() {
         return author;
     }
 
-    public void setAuthor(String[] author) {
+    public void setAuthor(ArrayList<String> author) {
         this.author = author;
     }
 
@@ -48,6 +51,10 @@ public class Book {
     public void setYear(int year) {
         this.year = year;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "BOOK: " + author.get(0) + " " + title + " " + year;
+    }
+
 }

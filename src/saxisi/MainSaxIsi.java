@@ -1,10 +1,13 @@
 package saxisi;
 
-import Connection.MongoDBConnection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.BasicDBObjectBuilder;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
+import Models.Author;
+import Models.Book;
+import Models.Incollections;
+import Models.Inproceeding;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 /**
  * @author Javier
@@ -18,11 +21,37 @@ public class MainSaxIsi {
      */
     public static void main(String[] args) {
 
-        DB dbconnection = MongoDBConnection.getDBConnection();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
 
-        DBCollection autores = dbconnection.getCollection("autores");
-        BasicDBObject autor1 = new BasicDBObject();
-        BasicDBObjectBuilder autor2 = new BasicDBObjectBuilder();
+        try {
+            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\prueba.xml");
+            SAXParser parser = factory.newSAXParser();
+            SaxHandler handler = new SaxHandler();
+            parser.parse(xmlInput, handler);
+            System.out.println("IMPROCEEDINGS");
+            for (Inproceeding inproceding : handler.getInproceedings()) {
+                System.out.println(inproceding);
+            }
+            System.out.println("BOOKS");
+            for (Book book : handler.getBooks()) {
+                System.out.println(book);
+            }
+            System.out.println("INCOLLECTIONS");
+            for (Incollections incollection : handler.getIncollections()) {
+                System.out.println(incollection);
+            }
+            System.out.println("AUTHORS");
+            for (Author author : handler.getAuthors()) {
+                System.out.println(author);
+            }
+        } catch (Throwable err) {
+            err.printStackTrace();
+        }
     }
 
+    //DB dbconnection = MongoDBConnection.getDBConnection();
+//
+//        DBCollection autores = dbconnection.getCollection("autores");
+//        BasicDBObject autor1 = new BasicDBObject();
+//        BasicDBObjectBuilder autor2 = new BasicDBObjectBuilder();
 }

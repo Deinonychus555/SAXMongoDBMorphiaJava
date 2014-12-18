@@ -1,6 +1,7 @@
 package Models;
 
 import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,7 +11,7 @@ import com.mongodb.BasicDBObject;
  */
 public class Inproceeding extends BasicDBObject {
 
-    private String author;
+    private ArrayList<String> author = new ArrayList();
 
     private String title;
 
@@ -21,16 +22,16 @@ public class Inproceeding extends BasicDBObject {
     private String crossref;
 
     /**
-     * @return String
+     * @return ArrayList
      */
-    public String getAuthor() {
+    public ArrayList<String> getAuthor() {
         return author;
     }
 
     /**
      * @param author
      */
-    public void setAuthor(String author) {
+    public void setAuthor(ArrayList<String> author) {
         this.author = author;
     }
 
@@ -89,6 +90,11 @@ public class Inproceeding extends BasicDBObject {
      */
     public void setCrossref(String crossref) {
         this.crossref = crossref;
+    }
+
+    @Override
+    public String toString() {
+        return "Inproceeding: " + author.get(0) + " " + title + " " + year + " " + bookTitle + " " + crossref + " Fin Inproceeding \n"; //To change body of generated methods, choose Tools | Templates.
     }
 
 }
