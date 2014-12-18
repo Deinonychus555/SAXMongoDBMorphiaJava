@@ -94,7 +94,7 @@ public class Inproceeding extends BasicDBObject {
 
     @Override
     public String toString() {
-        return "Inproceeding: " + author.get(0) + " " + title + " " + year + " " + bookTitle + " " + crossref + " Fin Inproceeding \n"; //To change body of generated methods, choose Tools | Templates.
+        return "Inproceeding: " + " " + title + " " + year + " " + bookTitle + " " + crossref + " Fin Inproceeding \n"; //To change body of generated methods, choose Tools | Templates.
     }
 
 }
