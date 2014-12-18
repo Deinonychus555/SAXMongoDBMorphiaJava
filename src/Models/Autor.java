@@ -11,14 +11,24 @@ package Models;
  */
 public class Autor {
 
-    private String nombre;
+    private String name;
+    private String [] cite;
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public String[] getCite() {
+        return cite;
+    }
+
+    public void setCite(String[] cite) {
+        this.cite = cite;
+    }
+    
 
 }
