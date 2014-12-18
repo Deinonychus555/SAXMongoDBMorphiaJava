@@ -24,7 +24,7 @@ public class MainSaxIsi {
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
         try {
-            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\prueba.xml");
+            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);

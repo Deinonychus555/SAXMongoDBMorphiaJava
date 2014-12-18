@@ -105,8 +105,10 @@ public class SaxHandler extends DefaultHandler {
                 }
                 break;
             case "cite":
-                Author author = (Author) this.objectStack.peek();
-                author.getCite().add(value);
+                if ("www".equals(currentElementParent())) {
+                    Author author = (Author) this.objectStack.peek();
+                    author.getCite().add(value);
+                }
                 break;
             case "year":
                 if ("inproceedings".equals(currentElementParent())) {
@@ -124,8 +126,10 @@ public class SaxHandler extends DefaultHandler {
                 }
                 break;
             case "journal":
-                Article article = (Article) this.objectStack.peek();
-                article.setJournal(value);
+                if ("article".equals(currentElementParent())) {
+                    Article article = (Article) this.objectStack.peek();
+                    article.setJournal(value);
+                }
                 break;
             case "editor":
                 if ("book".equals(currentElementParent())) {
