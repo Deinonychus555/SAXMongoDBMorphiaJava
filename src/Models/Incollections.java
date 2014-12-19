@@ -5,14 +5,15 @@
  */
 package Models;
 
-import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  *
  * @author oscarmirandabravo
  */
-public class Incollections extends BasicDBObject {
+@Entity("Incollections")
+public class Incollections {
 
     private ArrayList<String> author = new ArrayList();
     private String title;

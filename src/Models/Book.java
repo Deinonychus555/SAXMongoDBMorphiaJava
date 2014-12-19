@@ -5,15 +5,16 @@
  */
 package Models;
 
-import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  * @author Javier
  * @author Juan Antonio
  * @author Oscar
  */
-public class Book extends BasicDBObject {
+@Entity("Books")
+public class Book{
 
     private ArrayList<String> editor = new ArrayList();
     private ArrayList<String> author = new ArrayList();

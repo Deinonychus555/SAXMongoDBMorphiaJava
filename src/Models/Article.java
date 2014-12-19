@@ -5,8 +5,8 @@
  */
 package Models;
 
-import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  *
@@ -14,7 +14,8 @@ import java.util.ArrayList;
  * @author Juan Antonio Echeverrías Aranda
  * @author Oscar Miranda Bravo
  */
-public class Article extends BasicDBObject {
+@Entity("Articles")
+public class Article {
 
     private String key;
 

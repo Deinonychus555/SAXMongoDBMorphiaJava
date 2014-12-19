@@ -7,13 +7,19 @@ package Models;
 
 import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  *
  * @author Javier
  */
-public class Author extends BasicDBObject {
+@Entity("Authors")
+public class Author {
 
+    @Id ObjectId id;
+    
     private String name;
     private ArrayList<String> cite = new ArrayList();
 

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/dblp.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE dblp SYSTEM "dblp.dtd">
+
+    <dblp>
+    ...
+    </dblp>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT dblp (www|incollection|book|proceedings|inproceedings|article|phdthesis|mastersthesis)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT www (title|url|editor|ee|year|author|booktitle|note|crossref|cite)*>
+<!ATTLIST www
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT title (#PCDATA|i|sup|sub|tt)*>
+<!ATTLIST title
+    bibtex CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT url (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT editor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT ee (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT year (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT author (#PCDATA)>
+<!ATTLIST author
+    bibtex CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT booktitle (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT incollection (year|author|title|pages|booktitle|chapter|ee|note|crossref|url|cdrom|publisher|cite|isbn|number)*>
+<!ATTLIST incollection
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+    publtype CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT pages (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT crossref (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT book (title|author|volume|cdrom|year|pages|publisher|cite|series|isbn|ee|month|note|url|school|editor|booktitle)*>
+<!ATTLIST book
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT publisher (#PCDATA)>
+<!ATTLIST publisher
+    href CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT series (#PCDATA)>
+<!ATTLIST series
+    href CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT isbn (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT i (#PCDATA|sub|sup|i)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT volume (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sup (#PCDATA|i|sub|sup)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT proceedings (series|editor|address|title|booktitle|pages|volume|author|year|cite|isbn|publisher|url|journal|ee|note|crossref|number)*>
+<!ATTLIST proceedings
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+    publtype CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT inproceedings (title|author|pages|year|booktitle|ee|number|note|month|crossref|url|cdrom|editor|cite)*>
+<!ATTLIST inproceedings
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+    publtype CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sub (#PCDATA|i|sup|sub|tt)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT cdrom (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT cite (#PCDATA)>
+<!ATTLIST cite
+    label CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT note (#PCDATA)>
+<!ATTLIST note
+    type CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT number (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT tt (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT journal (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT address (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT article (url|title|author|pages|booktitle|journal|volume|cdrom|year|cite|month|publisher|ee|number|crossref|note|editor)*>
+<!ATTLIST article
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+    publtype CDATA #IMPLIED
+    reviewid CDATA #IMPLIED
+    rating CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT month (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT chapter (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT phdthesis (year|author|title|school|pages|ee|series|url|volume|publisher|number|isbn|month|note)*>
+<!ATTLIST phdthesis
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT school (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT mastersthesis (author|title|year|school|url|ee)*>
+<!ATTLIST mastersthesis
+    mdate CDATA #IMPLIED
+    key CDATA #IMPLIED
+  >

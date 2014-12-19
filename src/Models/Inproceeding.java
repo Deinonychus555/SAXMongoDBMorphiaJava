@@ -1,7 +1,7 @@
 package Models;
 
-import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  *
@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * @author Juan Antonio
  * @author Oscar
  */
-public class Inproceeding extends BasicDBObject {
+@Entity("Inproceedings")
+public class Inproceeding{
 
     private ArrayList<String> author = new ArrayList();
 
