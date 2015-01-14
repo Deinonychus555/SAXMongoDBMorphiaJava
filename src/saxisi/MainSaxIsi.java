@@ -1,12 +1,10 @@
 package saxisi;
 
-import Connection.MongoDBConnection;
+import Models.Article;
 import Models.Author;
 import Models.Book;
 import Models.Incollections;
 import Models.Inproceeding;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,32 +34,72 @@ public class MainSaxIsi {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
             Morphia m = new Morphia();
-            Datastore database = m.createDatastore(mongo, "PracticaISI");
+            Datastore database = m.createDatastore(mongo, "Prueba_referencias");
 
-            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\sax_isi\\src\\xml\\dblp.xml");
+            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\prueba.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);
-            System.out.println("IMPROCEEDINGS");
+
+            System.out.println("INPROCEEDINGS");
             for (Inproceeding inproceeding : handler.getInproceedings()) {
-//                DBCollection inproceedings = dbconnection.getCollection("inproceedings");
+                for (String author : inproceeding.getAuthors()) {
+                    Author author_obj = handler.getAuthors().get(author);
+                    System.out.println(author_obj);
+                    if (author_obj != null) {
+                        author_obj.getInproceedings().add(inproceeding);
+                        inproceeding.getAuthors_id().add(author_obj);
+                        author_obj.setMin_year((inproceeding.getYear() < author_obj.getMin_year()) ? inproceeding.getYear() : author_obj.getMin_year());
+                        author_obj.setMax_year((inproceeding.getYear() > author_obj.getMax_year()) ? inproceeding.getYear() : author_obj.getMax_year());
+                    }
+                }
                 database.save(inproceeding);
             }
+
             System.out.println("BOOKS");
             for (Book book : handler.getBooks()) {
-//                DBCollection books = dbconnection.getCollection("books");
+                for (String author : book.getAuthor()) {
+                    Author author_obj = handler.getAuthors().get(author);
+                    if (author_obj != null) {
+                        author_obj.getBooks().add(book);
+                        book.getAuthors_id().add(author_obj);
+                        author_obj.setMin_year((book.getYear() < author_obj.getMin_year()) ? book.getYear() : author_obj.getMin_year());
+                        author_obj.setMax_year((book.getYear() > author_obj.getMax_year()) ? book.getYear() : author_obj.getMax_year());
+                    }
+                }
                 database.save(book);
             }
+
             System.out.println("INCOLLECTIONS");
             for (Incollections incollection : handler.getIncollections()) {
-//                DBCollection incollections = dbconnection.getCollection("incollections");
+                for (String author : incollection.getAuthor()) {
+                    Author author_obj = handler.getAuthors().get(author);
+                    if (author_obj != null) {
+                        author_obj.getIncollections().add(incollection);
+                        incollection.getAuthors_id().add(author_obj);
+                        author_obj.setMin_year((incollection.getYear() < author_obj.getMin_year()) ? incollection.getYear() : author_obj.getMin_year());
+                        author_obj.setMax_year((incollection.getYear() > author_obj.getMax_year()) ? incollection.getYear() : author_obj.getMax_year());
+                    }
+                }
                 database.save(incollection);
             }
-            System.out.println("AUTHORS");
-            for (Author author : handler.getAuthors()) {
-                //DBCollection authors = dbconnection.getCollection("authors");
-                //authors.save(author);
 
+            System.out.println("ARTICLES");
+            for (Article article : handler.getArticles()) {
+                for (String author : article.getAuthors()) {
+                    Author author_obj = handler.getAuthors().get(author);
+                    if (author_obj != null) {
+                        author_obj.getArticle().add(article);
+                        article.getAuthors_id().add(author_obj);
+                        author_obj.setMin_year((article.getYear() < author_obj.getMin_year()) ? article.getYear() : author_obj.getMin_year());
+                        author_obj.setMax_year((article.getYear() > author_obj.getMax_year()) ? article.getYear() : author_obj.getMax_year());
+                    }
+                }
+                database.save(article);
+            }
+
+            System.out.println("AUTHORS");
+            for (Author author : handler.getAuthors().values()) {
                 database.save(author);
             }
         } catch (ParserConfigurationException | SAXException | IOException err) {

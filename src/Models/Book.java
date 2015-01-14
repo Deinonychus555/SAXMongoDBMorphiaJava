@@ -6,7 +6,10 @@
 package Models;
 
 import java.util.ArrayList;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 /**
  * @author Javier
@@ -14,27 +17,32 @@ import org.mongodb.morphia.annotations.Entity;
  * @author Oscar
  */
 @Entity("Books")
-public class Book{
+public class Book {
 
-    private ArrayList<String> editor = new ArrayList();
-    private ArrayList<String> author = new ArrayList();
+    @Id
+    ObjectId id = new ObjectId();
+
+    private ArrayList<String> authors = new ArrayList();
+
+    @Reference
+    private ArrayList<Author> authors_id = new ArrayList();
     private String title;
     private int year;
 
-    public ArrayList<String> getEditor() {
-        return editor;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void setEditor(ArrayList<String> editor) {
-        this.editor = editor;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public ArrayList<String> getAuthor() {
-        return author;
+        return authors;
     }
 
     public void setAuthor(ArrayList<String> author) {
-        this.author = author;
+        this.authors = author;
     }
 
     public String getTitle() {
@@ -53,9 +61,25 @@ public class Book{
         this.year = year;
     }
 
+    public ArrayList<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(ArrayList<String> authors) {
+        this.authors = authors;
+    }
+
+    public ArrayList<Author> getAuthors_id() {
+        return authors_id;
+    }
+
+    public void setAuthors_id(ArrayList<Author> authors_id) {
+        this.authors_id = authors_id;
+    }
+
     @Override
     public String toString() {
-        return "BOOK: " + author.get(0) + " " + title + " " + year;
+        return "BOOK: " + authors.get(0) + " " + title + " " + year;
     }
 
 }

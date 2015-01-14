@@ -11,7 +11,10 @@ import Models.Book;
 import Models.Incollections;
 import Models.Inproceeding;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Stack;
+import java.util.TreeMap;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -22,7 +25,8 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SaxHandler extends DefaultHandler {
 
-    private ArrayList<Author> authors = new ArrayList();
+    private Map<String, Author> authors = new TreeMap();
+
     private ArrayList<Book> books = new ArrayList();
     private ArrayList<Article> articles = new ArrayList();
     private ArrayList<Incollections> incollections = new ArrayList();
@@ -41,7 +45,6 @@ public class SaxHandler extends DefaultHandler {
                 case "www":
                     Author author = new Author();
                     this.objectStack.push(author);
-                    this.authors.add(author);
                     break;
                 case "inproceedings":
                     Inproceeding inproceeding = new Inproceeding();
@@ -90,9 +93,10 @@ public class SaxHandler extends DefaultHandler {
                 if ("www".equals(currentElementParent())) {
                     Author author = (Author) this.objectStack.peek();
                     author.setName(value);
+                    authors.put(value, author);
                 } else if ("inproceedings".equals(currentElementParent())) {
                     Inproceeding inproceeding = (Inproceeding) this.objectStack.peek();
-                    inproceeding.getAuthor().add(value);
+                    inproceeding.getAuthors().add(value);
                 } else if ("article".equals(currentElementParent())) {
                     Article article = (Article) this.objectStack.peek();
                     article.getAuthors().add(value);
@@ -102,12 +106,6 @@ public class SaxHandler extends DefaultHandler {
                 } else if ("incollection".equals(currentElementParent())) {
                     Incollections incollection = (Incollections) this.objectStack.peek();
                     incollection.getAuthor().add(value);
-                }
-                break;
-            case "cite":
-                if ("www".equals(currentElementParent())) {
-                    Author author = (Author) this.objectStack.peek();
-                    author.getCite().add(value);
                 }
                 break;
             case "year":
@@ -129,12 +127,6 @@ public class SaxHandler extends DefaultHandler {
                 if ("article".equals(currentElementParent())) {
                     Article article = (Article) this.objectStack.peek();
                     article.setJournal(value);
-                }
-                break;
-            case "editor":
-                if ("book".equals(currentElementParent())) {
-                    Book book = (Book) this.objectStack.peek();
-                    book.getEditor().add(value);
                 }
                 break;
             case "title":
@@ -187,14 +179,13 @@ public class SaxHandler extends DefaultHandler {
         }
     }
 
-    public ArrayList<Author> getAuthors() {
+    public Map<String, Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(ArrayList<Author> authors) {
-        this.authors = authors;
-    }
-
+//    public void setAuthors(Map<Author> authors) {
+//        this.authors = authors;
+//    }
     public ArrayList<Book> getBooks() {
         return books;
     }

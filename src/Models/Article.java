@@ -6,7 +6,10 @@
 package Models;
 
 import java.util.ArrayList;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 /**
  *
@@ -17,9 +20,15 @@ import org.mongodb.morphia.annotations.Entity;
 @Entity("Articles")
 public class Article {
 
+    @Id
+    ObjectId id = new ObjectId();
+
     private String key;
 
     private ArrayList<String> authors = new ArrayList();
+
+    @Reference
+    private ArrayList<Author> authors_id = new ArrayList();
 
     private String title;
 
@@ -34,6 +43,14 @@ public class Article {
 
     ;
 
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
     public String getKey() {
         return key;
     }
@@ -42,7 +59,7 @@ public class Article {
         this.key = key;
     }
 
-    public ArrayList getAuthors() {
+    public ArrayList<String> getAuthors() {
         return authors;
     }
 
@@ -80,6 +97,14 @@ public class Article {
 
     public void setCrossref(String crossref) {
         this.crossref = crossref;
+    }
+
+    public ArrayList<Author> getAuthors_id() {
+        return authors_id;
+    }
+
+    public void setAuthors_id(ArrayList<Author> authors_id) {
+        this.authors_id = authors_id;
     }
 
 }
