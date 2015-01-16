@@ -107,4 +107,8 @@ public class Article {
         this.authors_id = authors_id;
     }
 
+    public int getLengthAuthors() {
+        return (this.authors.size());
+    }
+
 }

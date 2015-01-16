@@ -6,8 +6,8 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
@@ -22,22 +22,22 @@ public class Author {
     @Id
     ObjectId id = new ObjectId();
 
-    private String name;
+    protected String name;
 
     @Reference
-    private ArrayList<Incollections> incollections = new ArrayList();
+    protected ArrayList<Incollections> incollections = new ArrayList();
 
     @Reference
-    private ArrayList<Book> books = new ArrayList();
+    protected ArrayList<Book> books = new ArrayList();
 
     @Reference
-    private ArrayList<Inproceeding> inproceedings = new ArrayList();
+    protected ArrayList<Inproceeding> inproceedings = new ArrayList();
 
     @Reference
-    private ArrayList<Article> article = new ArrayList();
+    protected ArrayList<Article> articles = new ArrayList();
 
-    private int min_year = 100000000;
-    private int max_year = 0;
+    protected int min_year = 100000000;
+    protected int max_year = 0;
 
     public String getName() {
         return name;
@@ -80,11 +80,11 @@ public class Author {
     }
 
     public ArrayList<Article> getArticle() {
-        return article;
+        return articles;
     }
 
     public void setArticle(ArrayList<Article> article) {
-        this.article = article;
+        this.articles = article;
     }
 
     public int getMax_year() {
@@ -106,6 +106,90 @@ public class Author {
     @Override
     public String toString() {
         return "AUTHOR: " + name;
+    }
+
+    public int getLengthList() {
+        return (this.incollections.size() + this.inproceedings.size() + this.articles.size() + this.books.size());
+    }
+
+    public int getAge() {
+        return (this.max_year - this.min_year);
+    }
+
+    public float getAnnual() {
+        return (this.getLengthList() / this.getAge());
+    }
+
+    public boolean isInproductive() {
+        return (this.getAnnual() < 1);
+    }
+
+    public boolean isNobel() {
+        return (this.getAge() < 6);
+    }
+
+    public boolean isOccasional() {
+        return (this.getLengthList() < 5);
+    }
+
+    public float getAnnualJ() {
+        int lengthJ = this.getLengthJ();
+        return (lengthJ / this.getAge());
+    }
+
+    public boolean isInadequate() {
+        return (this.getAnnualJ() < 0.5);
+    }
+
+    public int getLengthJ() {
+        return this.articles.size();
+    }
+
+    public int getLengthP() {
+        return this.inproceedings.size();
+    }
+
+    public float getRatioP() {
+        return (this.getLengthP() / this.getLengthList()) * 100;
+    }
+
+    public float getRatioJ() {
+        return (this.getLengthJ() / this.getLengthList()) * 100;
+    }
+
+    public boolean isTraveller() {
+        return (this.getRatioP() > this.getRatioJ());
+    }
+
+    //Redactor
+    public boolean isEditor() {
+        return (this.getRatioJ() > this.getRatioP());
+    }
+
+    public float getSocial() {
+        int grupal = 0;
+        for (Article article : articles) {
+            grupal += article.getLengthAuthors();
+        }
+        return (grupal / this.getLengthJ());
+    }
+
+    public int getCardinal() {
+        ArrayList<Integer> grupal = new ArrayList();
+        for (Article article : this.articles) {
+            grupal.add(article.getLengthAuthors());
+        }
+        Collections.sort(grupal);
+        int pos = (grupal.size() + 1) / 2;
+        return grupal.get(pos);
+    }
+
+    public boolean isSociable() {
+        return (this.getSocial() > this.getCardinal());
+    }
+
+    public boolean isEstable() {
+        return (this.getSocial() < this.getCardinal());
     }
 
 }

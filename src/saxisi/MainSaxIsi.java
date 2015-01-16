@@ -3,6 +3,7 @@ package saxisi;
 import Models.Article;
 import Models.Author;
 import Models.Book;
+import Models.ImportantAuthor;
 import Models.Incollections;
 import Models.Inproceeding;
 import com.mongodb.MongoClient;
@@ -34,9 +35,9 @@ public class MainSaxIsi {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
             Morphia m = new Morphia();
-            Datastore database = m.createDatastore(mongo, "Prueba_referencias");
+            Datastore database = m.createDatastore(mongo, "BBDD_ISI_2");
 
-            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\prueba.xml");
+            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);
@@ -45,7 +46,6 @@ public class MainSaxIsi {
             for (Inproceeding inproceeding : handler.getInproceedings()) {
                 for (String author : inproceeding.getAuthors()) {
                     Author author_obj = handler.getAuthors().get(author);
-                    System.out.println(author_obj);
                     if (author_obj != null) {
                         author_obj.getInproceedings().add(inproceeding);
                         inproceeding.getAuthors_id().add(author_obj);
@@ -101,7 +101,12 @@ public class MainSaxIsi {
             System.out.println("AUTHORS");
             for (Author author : handler.getAuthors().values()) {
                 database.save(author);
+                if (!author.isNobel() && !author.isOccasional()) {
+                    ImportantAuthor ia = new ImportantAuthor(author);
+                    database.save(ia);
+                }
             }
+
         } catch (ParserConfigurationException | SAXException | IOException err) {
             err.printStackTrace();
         }
