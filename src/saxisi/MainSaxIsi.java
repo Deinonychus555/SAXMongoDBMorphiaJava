@@ -2,6 +2,7 @@ package saxisi;
 
 import Models.Article;
 import Models.Author;
+import Models.BoehmAuthor;
 import Models.Book;
 import Models.EditorAuthor;
 import Models.ImportantAuthor;
@@ -42,9 +43,9 @@ public class MainSaxIsi {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
             Morphia m = new Morphia();
-            Datastore database = m.createDatastore(mongo, "BBDD_ISI_Prueba");
+            Datastore database = m.createDatastore(mongo, "BBDD_ISI_BOEHM");
 
-            InputStream xmlInput = new FileInputStream("/Users/oscarmirandabravo/NetBeansProjects/sax_isi/src/xml/prueba.xml");
+            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);
@@ -109,13 +110,11 @@ public class MainSaxIsi {
             for (Author author : handler.getAuthors().values()) {
                 database.save(author);
                 ArrayList repetidos = new ArrayList<Author>();
-                if (!"Barry W. Boehm".equals(author.getName())){
-                    System.out.println(author.getName() +": " + author.bohem(0,repetidos));
-                }
-                
+
                 if (!author.isNobel() && !author.isOccasional()) {
                     ImportantAuthor ia = new ImportantAuthor(author);
                     database.save(ia);
+
                     if (ia.getIndiceSexenios() > 2) {
                         if (ia.isInadequate()) {
                             InadecuateAuthor inadecuateAuthor = new InadecuateAuthor(author);
@@ -137,6 +136,10 @@ public class MainSaxIsi {
                     } else if (ia.isEstable()) {
                         StableAuthor stableAuthor = new StableAuthor(author);
                         database.save(stableAuthor);
+                    }
+                    if (author.bohem(0, repetidos) <= 4) {
+                        BoehmAuthor boehm = new BoehmAuthor(author.getName());
+                        database.save(boehm);
                     }
                 }
             }

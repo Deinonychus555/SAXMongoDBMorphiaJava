@@ -18,9 +18,10 @@ import org.mongodb.morphia.annotations.Reference;
  */
 @Entity("Authors")
 public class Author {
-    
-    public Author(){}
-    
+
+    public Author() {
+    }
+
     public Author(ImportantAuthor author) {
         this.id = author.id;
         this.name = author.name;
@@ -205,105 +206,104 @@ public class Author {
         return (this.getSocial() < this.getCardinal());
     }
 
-    public int bohem(int indice, ArrayList <Author> repetidos){
-        
+    public int bohem(int indice, ArrayList<Author> repetidos) {
+
         int indiceBohem = 10000000;
-        
-        
-        for(Article article : this.articles){
-            
-            for(Author author : article.getAuthors_id()){
-                if ("Barry W. Boehm".equals(author.getName())){
-                    
-                    if (indice < indiceBohem){
+
+        for (Article article : this.articles) {
+
+            for (Author author : article.getAuthors_id()) {
+                if ("Barry W. Boehm".equals(author.getName())) {
+
+                    if (indice < indiceBohem) {
                         indiceBohem = indice;
                     }
-                    
-                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+
+                } else if (!this.getName().equals(author.getName()) && !repetidos.contains(author)) {
                     int indiceActual;
                     repetidos.add(this);
                     indiceActual = author.bohem(++indice, repetidos);
                     indice--;
-                    if (indiceBohem>indiceActual){
+                    if (indiceBohem > indiceActual) {
                         indiceBohem = indiceActual;
                     }
-                    
+
                 }
-                
+
             }
-            
+
         }
-        for(Inproceeding inproceeding : this.inproceedings){
-            
-            for(Author author : inproceeding.getAuthors_id()){
-                
-                if ("Barry W. Boehm".equals(author.getName())){
-                    
-                    if (indice < indiceBohem){
+        for (Inproceeding inproceeding : this.inproceedings) {
+
+            for (Author author : inproceeding.getAuthors_id()) {
+
+                if ("Barry W. Boehm".equals(author.getName())) {
+
+                    if (indice < indiceBohem) {
                         indiceBohem = indice;
                     }
-                    
-                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+
+                } else if (!this.getName().equals(author.getName()) && !repetidos.contains(author)) {
                     int indiceActual;
                     repetidos.add(this);
                     indiceActual = author.bohem(++indice, repetidos);
                     indice--;
-                    if (indiceBohem>indiceActual){
+                    if (indiceBohem > indiceActual) {
                         indiceBohem = indiceActual;
                     }
-                    
+
                 }
-                
+
             }
-            
+
         }
-        for(Book book : this.books){
-            
-            for(Author author : book.getAuthors_id()){
-                
-                if ("Barry W. Boehm".equals(author.getName())){
-                    
-                    if (indice < indiceBohem){
+        for (Book book : this.books) {
+
+            for (Author author : book.getAuthors_id()) {
+
+                if ("Barry W. Boehm".equals(author.getName())) {
+
+                    if (indice < indiceBohem) {
                         indiceBohem = indice;
                     }
-                    
-                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+
+                } else if (!this.getName().equals(author.getName()) && !repetidos.contains(author)) {
                     int indiceActual;
                     repetidos.add(this);
                     indiceActual = author.bohem(++indice, repetidos);
                     indice--;
-                    if (indiceBohem>indiceActual){
+                    if (indiceBohem > indiceActual) {
                         indiceBohem = indiceActual;
                     }
-                    
+
                 }
-                
+
             }
-            
+
         }
-        for(Incollections incollection : this.incollections){
-            
-            for(Author author : incollection.getAuthors_id()){
-                
-                if ("Barry W. Boehm".equals(author.getName())){
-                    
-                    if (indice < indiceBohem){
+        for (Incollections incollection : this.incollections) {
+
+            for (Author author : incollection.getAuthors_id()) {
+
+                if ("Barry W. Boehm".equals(author.getName())) {
+
+                    if (indice < indiceBohem) {
                         indiceBohem = indice;
                     }
-                    
-                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+
+                } else if (!this.getName().equals(author.getName()) && !repetidos.contains(author)) {
                     int indiceActual;
                     repetidos.add(this);
                     indiceActual = author.bohem(++indice, repetidos);
                     indice--;
-                    if (indiceBohem>indiceActual){
+                    if (indiceBohem > indiceActual) {
                         indiceBohem = indiceActual;
                     }
-                    
+
                 }
-                
+
             }
-            
+
         }
         return indiceBohem;
     }
