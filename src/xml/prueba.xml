@@ -40,6 +40,36 @@
         <url>http://xml.coverpages.org/sgml-xml.html</url>
         <year>2006</year>
     </www>
+    <www mdate="2009-02-11" key="www/org/oasis-open-cover-xml">
+        <author>Barry W. Boehm</author>
+        <title>The SGML/XML Web Page</title>
+        <url>http://xml.coverpages.org/sgml-xml.html</url>
+        <year>2006</year>
+    </www>
+    <www mdate="2009-02-11" key="www/org/oasis-open-cover-xml">
+        <author>Hubert D. Zimmer</author>
+        <title>The SGML/XML Web Page</title>
+        <url>http://xml.coverpages.org/sgml-xml.html</url>
+        <year>2006</year>
+    </www>
+    <www mdate="2009-02-11" key="www/org/oasis-open-cover-xml">
+        <author>Horst Rapp</author>
+        <title>The SGML/XML Web Page</title>
+        <url>http://xml.coverpages.org/sgml-xml.html</url>
+        <year>2006</year>
+    </www>
+    <www mdate="2009-02-11" key="www/org/oasis-open-cover-xml">
+        <author>Sarah Jane Delany</author>
+        <title>The SGML/XML Web Page</title>
+        <url>http://xml.coverpages.org/sgml-xml.html</url>
+        <year>2006</year>
+    </www>
+    <www mdate="2009-02-11" key="www/org/oasis-open-cover-xml">
+        <author>Udo Haiber</author>
+        <title>The SGML/XML Web Page</title>
+        <url>http://xml.coverpages.org/sgml-xml.html</url>
+        <year>2006</year>
+    </www>
     <incollection mdate="2013-09-10" key="series/cogtech/Zancanaro12">
         <author>Massimo Zancanaro</author>
         <title>Shared Interfaces for Co-located Interaction.</title>
@@ -89,6 +119,7 @@
         <author>Pádraig Cunningham</author>
         <author>Matthieu Cord</author>
         <author>Sarah Jane Delany</author>
+        <author>Udo Haiber</author>
         <title>Supervised Learning.</title>
         <pages>21-49</pages>
         <year>2008</year>
@@ -101,6 +132,7 @@
         <author>Axel Horndasch</author>
         <author>Horst Rapp</author>
         <author>Hans Rottger</author>
+        <author>Sarah Jane Delany</author>
         <title>SmartKom-Public.</title>
         <pages>471-492</pages>
         <year>2006</year>
@@ -112,6 +144,7 @@
     <incollection mdate="2013-09-10" key="series/cogtech/ZimmerMU11">
         <author>Hubert D. Zimmer</author>
         <author>Stefan M;nzer</author>
+        <author>Horst Rapp</author>
         <author>Katja Umla-Runge</author>
         <title>Visuo-spatial Working Memory as a Limited Resource of Cognitive Processing.</title>
         <pages>13-34</pages>
@@ -124,6 +157,8 @@
     <incollection mdate="2013-09-10" key="series/cogtech/MayberryC11">
         <author>Marshall R. Mayberry</author>
         <author>Matthew W. Crocker</author>
+        <author>Barry W. Boehm</author>
+        <author>Hubert D. Zimmer</author>
         <title>The Evolution of a Connectionist Model of Situated Human Language Understanding.</title>
         <pages>143-167</pages>
         <year>2011</year>

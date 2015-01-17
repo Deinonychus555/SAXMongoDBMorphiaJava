@@ -263,4 +263,111 @@ public class ImportantAuthor {
         return sexenios;
     }
 
+    
+        public int bohem(int indice, ArrayList <Author> repetidos){
+        
+        int indiceBohem = 10000000;
+        
+        
+        for(Article article : this.articles){
+            
+            for(Author author : article.getAuthors_id()){
+                if ("Barry W. Boehm".equals(author.getName())){
+                    
+                    if (indice < indiceBohem){
+                        indiceBohem = indice;
+                    }
+                    
+                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+                    int indiceActual;
+                    Author este = new Author(this);
+                    repetidos.add(este);
+                    indiceActual = author.bohem(++indice, repetidos);
+                    indice--;
+                    if (indiceBohem>indiceActual){
+                        indiceBohem = indiceActual;
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        for(Inproceeding inproceeding : this.inproceedings){
+            
+            for(Author author : inproceeding.getAuthors_id()){
+                
+                if ("Barry W. Boehm".equals(author.getName())){
+                    
+                    if (indice < indiceBohem){
+                        indiceBohem = indice;
+                    }
+                    
+                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+                    int indiceActual;
+                    Author este = new Author(this);
+                    repetidos.add(este);
+                    indiceActual = author.bohem(++indice, repetidos);
+                    indice--;
+                    if (indiceBohem>indiceActual){
+                        indiceBohem = indiceActual;
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        for(Book book : this.books){
+            
+            for(Author author : book.getAuthors_id()){
+                
+                if ("Barry W. Boehm".equals(author.getName())){
+                    
+                    if (indice < indiceBohem){
+                        indiceBohem = indice;
+                    }
+                    
+                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+                    int indiceActual;
+                    Author este = new Author(this);
+                    repetidos.add(este);
+                    indiceActual = author.bohem(++indice, repetidos);
+                    indice--;
+                    if (indiceBohem>indiceActual){
+                        indiceBohem = indiceActual;
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        for(Incollections incollection : this.incollections){
+            
+            for(Author author : incollection.getAuthors_id()){
+                
+                if ("Barry W. Boehm".equals(author.getName())){
+                    
+                    if (indice < indiceBohem){
+                        indiceBohem = indice;
+                    }
+                    
+                }else if(!this.getName().equals(author.getName()) && !repetidos.contains(author)){
+                    int indiceActual;
+                    Author este = new Author(this);
+                    repetidos.add(este);
+                    indiceActual = author.bohem(++indice, repetidos);
+                    indice--;
+                    if (indiceBohem>indiceActual){
+                        indiceBohem = indiceActual;
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        return indiceBohem;
+    }
 }

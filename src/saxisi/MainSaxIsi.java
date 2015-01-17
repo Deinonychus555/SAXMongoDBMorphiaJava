@@ -16,6 +16,7 @@ import com.mongodb.MongoClient;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -41,9 +42,9 @@ public class MainSaxIsi {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
             Morphia m = new Morphia();
-            Datastore database = m.createDatastore(mongo, "BBDD_ISI");
+            Datastore database = m.createDatastore(mongo, "BBDD_ISI_Prueba");
 
-            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
+            InputStream xmlInput = new FileInputStream("/Users/oscarmirandabravo/NetBeansProjects/sax_isi/src/xml/prueba.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);
@@ -107,6 +108,11 @@ public class MainSaxIsi {
             System.out.println("AUTHORS");
             for (Author author : handler.getAuthors().values()) {
                 database.save(author);
+                ArrayList repetidos = new ArrayList<Author>();
+                if (!"Barry W. Boehm".equals(author.getName())){
+                    System.out.println(author.getName() +": " + author.bohem(0,repetidos));
+                }
+                
                 if (!author.isNobel() && !author.isOccasional()) {
                     ImportantAuthor ia = new ImportantAuthor(author);
                     database.save(ia);
