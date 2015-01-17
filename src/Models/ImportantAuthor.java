@@ -156,11 +156,21 @@ public class ImportantAuthor {
     }
 
     public float getRatioP() {
-        return (this.getLengthP() / this.getLengthList()) * 100;
+        int lengthList = this.getLengthList();
+        if (lengthList == 0) {
+            return 0;
+        } else {
+            return (this.getLengthP() / this.getLengthList()) * 100;
+        }
     }
 
     public float getRatioJ() {
-        return (this.getLengthJ() / this.getLengthList()) * 100;
+        int lengthList = this.getLengthList();
+        if (lengthList == 0) {
+            return 0;
+        } else {
+            return (this.getLengthJ() / this.getLengthList()) * 100;
+        }
     }
 
     public boolean isTraveller() {
@@ -177,17 +187,27 @@ public class ImportantAuthor {
         for (Article article : articles) {
             grupal += article.getLengthAuthors();
         }
-        return (grupal / this.getLengthJ());
+        int lengthJ = this.getLengthJ();
+        if (lengthJ == 0) {
+            return 0;
+        } else {
+            return (grupal / this.getLengthJ());
+        }
     }
 
     public int getCardinal() {
         ArrayList<Integer> grupal = new ArrayList();
-        for (Article article : this.articles) {
-            grupal.add(article.getLengthAuthors());
+        if (this.articles.size() != 0) {
+            int pos = 0;
+            for (Article article : this.articles) {
+                grupal.add(article.getLengthAuthors());
+                Collections.sort(grupal);
+                pos = (int) (grupal.size() / 2);
+            }
+            return grupal.get(pos);
+        } else {
+            return 0;
         }
-        Collections.sort(grupal);
-        int pos = (grupal.size() + 1) / 2;
-        return grupal.get(pos);
     }
 
     public boolean isSociable() {

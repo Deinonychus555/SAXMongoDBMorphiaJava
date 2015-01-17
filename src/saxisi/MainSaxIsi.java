@@ -41,7 +41,7 @@ public class MainSaxIsi {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
             Morphia m = new Morphia();
-            Datastore database = m.createDatastore(mongo, "BBDD_ISI_2");
+            Datastore database = m.createDatastore(mongo, "BBDD_ISI");
 
             InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
             SAXParser parser = factory.newSAXParser();
