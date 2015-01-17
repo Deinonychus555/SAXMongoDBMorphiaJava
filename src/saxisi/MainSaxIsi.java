@@ -3,9 +3,15 @@ package saxisi;
 import Models.Article;
 import Models.Author;
 import Models.Book;
+import Models.EditorAuthor;
 import Models.ImportantAuthor;
+import Models.InadecuateAuthor;
 import Models.Incollections;
 import Models.Inproceeding;
+import Models.SociableAuthor;
+import Models.StableAuthor;
+import Models.TravellerAuthor;
+import Models.UnproductiveAuthor;
 import com.mongodb.MongoClient;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -104,6 +110,28 @@ public class MainSaxIsi {
                 if (!author.isNobel() && !author.isOccasional()) {
                     ImportantAuthor ia = new ImportantAuthor(author);
                     database.save(ia);
+                    if (ia.getIndiceSexenios() > 2) {
+                        if (ia.isInadequate()) {
+                            InadecuateAuthor inadecuateAuthor = new InadecuateAuthor(author);
+                            database.save(inadecuateAuthor);
+                        } else if (ia.isInproductive()) {
+                            UnproductiveAuthor unproductiveAuthor = new UnproductiveAuthor(author);
+                            database.save(unproductiveAuthor);
+                        } else if (ia.isTraveller()) {
+                            TravellerAuthor travellerAuthor = new TravellerAuthor(author);
+                            database.save(travellerAuthor);
+                        } else if (ia.isEditor()) {
+                            EditorAuthor editorAuthor = new EditorAuthor(author);
+                            database.save(editorAuthor);
+                        }
+                    }
+                    if (ia.isSociable()) {
+                        SociableAuthor sociableAuthor = new SociableAuthor(author);
+                        database.save(sociableAuthor);
+                    } else if (ia.isEstable()) {
+                        StableAuthor stableAuthor = new StableAuthor(author);
+                        database.save(stableAuthor);
+                    }
                 }
             }
 

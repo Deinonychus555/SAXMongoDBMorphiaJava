@@ -6,7 +6,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -14,12 +13,13 @@ import org.mongodb.morphia.annotations.Reference;
 
 /**
  *
- * @author Javier
+ * @author Javier Inadecuados.
  */
-@Entity("ImportantAuthors")
-public class ImportantAuthor {
+@Entity("InadecuateAuthor")
+public class InadecuateAuthor {
 
-    public ImportantAuthor(Author author) {
+    public InadecuateAuthor(Author author) {
+
         this.id = author.id;
         this.name = author.name;
         this.articles = (ArrayList<Article>) author.articles.clone();
@@ -112,90 +112,6 @@ public class ImportantAuthor {
 
     public void setMax_year(int max_year) {
         this.max_year = max_year;
-    }
-
-    public int getLengthList() {
-        return (this.incollections.size() + this.inproceedings.size() + this.articles.size() + this.books.size());
-    }
-
-    public int getAge() {
-        return (this.max_year - this.min_year);
-    }
-
-    public float getAnnual() {
-        return (this.getLengthList() / this.getAge());
-    }
-
-    public boolean isInproductive() {
-        return (this.getAnnual() < 1);
-    }
-
-    public boolean isNobel() {
-        return (this.getAge() < 6);
-    }
-
-    public boolean isOccasional() {
-        return (this.getLengthList() < 5);
-    }
-
-    public float getAnnualJ() {
-        int lengthJ = this.getLengthJ();
-        return (lengthJ / this.getAge());
-    }
-
-    public boolean isInadequate() {
-        return (this.getAnnualJ() < 0.5);
-    }
-
-    public int getLengthJ() {
-        return this.articles.size();
-    }
-
-    public int getLengthP() {
-        return this.inproceedings.size();
-    }
-
-    public float getRatioP() {
-        return (this.getLengthP() / this.getLengthList()) * 100;
-    }
-
-    public float getRatioJ() {
-        return (this.getLengthJ() / this.getLengthList()) * 100;
-    }
-
-    public boolean isTraveller() {
-        return (this.getRatioP() > this.getRatioJ());
-    }
-
-    //Redactor
-    public boolean isEditor() {
-        return (this.getRatioJ() > this.getRatioP());
-    }
-
-    public float getSocial() {
-        int grupal = 0;
-        for (Article article : articles) {
-            grupal += article.getLengthAuthors();
-        }
-        return (grupal / this.getLengthJ());
-    }
-
-    public int getCardinal() {
-        ArrayList<Integer> grupal = new ArrayList();
-        for (Article article : this.articles) {
-            grupal.add(article.getLengthAuthors());
-        }
-        Collections.sort(grupal);
-        int pos = (grupal.size() + 1) / 2;
-        return grupal.get(pos);
-    }
-
-    public boolean isSociable() {
-        return (this.getSocial() > this.getCardinal());
-    }
-
-    public boolean isEstable() {
-        return (this.getSocial() < this.getCardinal());
     }
 
     public int getArticlesByYear(int year) {

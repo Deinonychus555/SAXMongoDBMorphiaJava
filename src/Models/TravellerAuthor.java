@@ -16,10 +16,10 @@ import org.mongodb.morphia.annotations.Reference;
  *
  * @author Javier
  */
-@Entity("ImportantAuthors")
-public class ImportantAuthor {
+@Entity("TravellerAuthor")
+public class TravellerAuthor {
 
-    public ImportantAuthor(Author author) {
+    public TravellerAuthor(Author author) {
         this.id = author.id;
         this.name = author.name;
         this.articles = (ArrayList<Article>) author.articles.clone();
