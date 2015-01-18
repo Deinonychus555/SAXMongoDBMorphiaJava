@@ -116,7 +116,14 @@ public class Author {
     public void setMin_year(int min_year) {
         this.min_year = min_year;
     }
-
+    
+    public boolean equals (Author author){
+       
+        return this.id== author.id;
+        
+    }
+    
+    
     @Override
     public String toString() {
         return "AUTHOR: " + name;

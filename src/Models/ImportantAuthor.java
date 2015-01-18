@@ -113,6 +113,13 @@ public class ImportantAuthor {
     public void setMax_year(int max_year) {
         this.max_year = max_year;
     }
+    
+     public boolean equals (Author author){
+       
+        return this.id== author.getId();
+        
+    }
+
 
     public int getLengthList() {
         return (this.incollections.size() + this.inproceedings.size() + this.articles.size() + this.books.size());
