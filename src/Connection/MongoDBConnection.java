@@ -1,3 +1,7 @@
+// Esta clase se encarga de conectarse a mongodb y a una base de datos donde 
+//se van a guardar los diferentes documentos obtenidos de parsear el xml.
+// Relamente no se utiliza esta clase en el programa.
+
 package Connection;
 
 import com.mongodb.DB;

@@ -7,15 +7,16 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import org.bson.types.ObjectId;
+
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
-/**
- *
- * @author Javier
- */
+// Con la anotación @Entity indicamos a Morphia que esta clase se tratará como un 
+//documento de mongo. Hay que indicar el nombre de la colección donde se 
+//almacenarán estos documentos en mongo.
 @Entity("Authors")
 public class Author {
 
@@ -33,11 +34,15 @@ public class Author {
         this.min_year = author.min_year;
     }
 
+    // Con la anotación @Id indicamos que este atributo será el identificador propio 
+    //que usa mongo para identificar de manera unívoca los documento .  
     @Id
     ObjectId id = new ObjectId();
 
     protected String name;
 
+    // Con la anotación @Reference indicamos que aquí se guardará en mongo una referencia
+    //que constará del nombre de la colección a la que pertenece el documento y su Id.
     @Reference
     protected ArrayList<Incollections> incollections = new ArrayList();
 

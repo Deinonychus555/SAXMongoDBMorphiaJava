@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Esta clase se encarga de parsear el xml. Creará los objetos que queramos 
+//almacenar en mongo como documentos y los guardará en arrays.
 package saxisi;
 
 import Models.Article;
@@ -32,8 +29,18 @@ public class SaxHandler extends DefaultHandler {
     private ArrayList<Incollections> incollections = new ArrayList();
     private ArrayList<Inproceeding> inproceedings = new ArrayList();
 
+     // Para apilar el nombre de las etiquetas que se va encontrando.
     private Stack<String> elementStack = new Stack<String>();
+    
+     // Para apilar los objetos que vamos creando al encontrar etiquetas determinadas.
     private Stack<Object> objectStack = new Stack<Object>();
+
+    
+     // Procesa el inicio de una etiqueta, el nombre de dicha etiqueta. <etiqueta_inico>
+    // Apila el nombre de la etiqueta.
+    // Según el nombre crea un objeto de una clase determinada.
+    // Guarda el objeto creado en un ArrayList.
+    // Apila el objeto creado.
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -70,6 +77,11 @@ public class SaxHandler extends DefaultHandler {
         }
     }
 
+    
+    // Procesa el final de una etiqueta, su cierre. </etiqueta_cierre>
+    // Desapila el último nombre de etiqueta apilado.
+    // Comprueba dicho nombre y si es igual a alguno de los que apilamos al encontrarnos
+    // desapilamos el último objeto apilado.
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         this.elementStack.pop();
@@ -78,6 +90,11 @@ public class SaxHandler extends DefaultHandler {
         }
     }
 
+    
+     // Procesa el contenido de una etiqueta <>contenido</>
+    // Obtenemos una referencia del último nombre de etiqueta apilado.
+    // Obtenemos una referencia del nombre de la etiqueta padre de la anterior.
+    // Obtenemos una referencia del último objeto apilado para modificarlo.
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         String value = new String(ch, start, length).trim();

@@ -1,3 +1,11 @@
+// Crea una conexión a mongodb y una base de datos donde volcar los resultados.
+// Crea una instancia de la clase 'SaxHandler' para parsear el xml.
+// Recorre los arrays de los diferentes objetos creados.
+// Se añaden las referencias oportunas a otros objetos.
+// Se guardan los objetos como documentos en mongo.
+
+
+
 package saxisi;
 
 import Models.Article;
