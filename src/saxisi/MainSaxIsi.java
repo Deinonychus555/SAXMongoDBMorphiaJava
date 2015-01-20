@@ -45,7 +45,7 @@ public class MainSaxIsi {
             Morphia m = new Morphia();
             Datastore database = m.createDatastore(mongo, "BBDD_ISI_BOEHM");
 
-            InputStream xmlInput = new FileInputStream("C:\\Users\\Javier\\Documents\\NetBeansProjects\\SAXISI\\src\\xml\\dblp.xml");
+            InputStream xmlInput = new FileInputStream("/home/juanan/NetBeansProjects/SAXMongoDBMorphiaJava/src/xml/prueba.xml");
             SAXParser parser = factory.newSAXParser();
             SaxHandler handler = new SaxHandler();
             parser.parse(xmlInput, handler);
