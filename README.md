@@ -6,6 +6,8 @@ Este programa lo que hace es procesar un documento XML mediante SAX, guardando l
 
 * [**Java SAX Parsing Example**][1]
 * [**Get element attributes in SAX XML parsing**][2]
+* [**Using MongoDB with Morphia**][3]
 
 [1]:http://tutorials.jenkov.com/java-xml/sax-example.html
 [2]:http://examples.javacodegeeks.com/core-java/xml/sax/get-element-attributes-in-sax-xml-parsing
+[3]:http://www.javacodegeeks.com/2011/11/using-mongodb-with-morphia.html
